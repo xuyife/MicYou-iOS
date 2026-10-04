@@ -15,7 +15,7 @@ kotlin {
     iosArm64 {
         binaries.framework {
             baseName = "MicYouProtocol"
-            isStatic = true
+            isStatic = false
         }
     }
 
