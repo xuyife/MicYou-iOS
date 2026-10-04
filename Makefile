@@ -104,7 +104,7 @@ kmp:
 		echo 'Warning: Gradle not found, skipping KMP build'; \
 	fi
 	mkdir -p $(WORKINGDIR)/MicYou.app/Frameworks
-	cp -R $(SOURCEDIR)/Protocol/build/bin/iosArm64/*Framework/MicYouProtocol.framework $(WORKINGDIR)/MicYou.app/Frameworks/ || true
+	cp -R $(SOURCEDIR)/Protocol/build/bin/iosArm64/*Framework/MicYouProtocol.framework $(WORKINGDIR)/MicYou.app/Frameworks/
 	echo '[MicYou v$(VERSION)] kmp - end'
 
 assets:
