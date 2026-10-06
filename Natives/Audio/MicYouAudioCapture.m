@@ -102,14 +102,11 @@
     self.audioEngine = [[AVAudioEngine alloc] init];
     self.inputNode = [self.audioEngine inputNode];
 
-    AVAudioFormat *format = [[AVAudioFormat alloc] initWithCommonFormat:AVAudioPCMFormatInt16
-                                                              sampleRate:self.sampleRate
-                                                                channels:(AVAudioChannelCount)self.channelCount
-                                                             interleaved:YES];
+    AVAudioFormat *format = [self.inputNode outputFormatForBus:0];
 
-    if (!format) {
-        NSLog(@"[MicYou] Failed to create audio format");
-        return NO;
+    if (!format || format.sampleRate <= 0 || format.channelCount == 0) {
+        NSLog(@"[MicYou] Failed to get input node format, falling back to nil");
+        format = nil;
     }
 
     __weak typeof(self) weakSelf = self;
