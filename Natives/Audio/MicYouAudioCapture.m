@@ -102,12 +102,10 @@
     self.audioEngine = [[AVAudioEngine alloc] init];
     self.inputNode = [self.audioEngine inputNode];
 
-    AVAudioFormat *format = [self.inputNode outputFormatForBus:0];
-
-    if (!format || format.sampleRate <= 0 || format.channelCount == 0) {
-        NSLog(@"[MicYou] Failed to get input node format, falling back to nil");
-        format = nil;
-    }
+    AVAudioFormat *format = [[AVAudioFormat alloc] initWithCommonFormat:AVAudioFormatPCM
+                                                          sampleRate:self.sampleRate
+                                                          channels:self.channelCount
+                                                           interleaved:NO];
 
     __weak typeof(self) weakSelf = self;
     [self.inputNode installTapOnBus:0
